@@ -1,0 +1,5 @@
+﻿  joc.cpp
+C:\Facultate\Semestrul 2\POO\Treasure Hunt\TreasureHunt\TreasureHunt\joc.cpp(62,23): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
+  TreasureHunt.vcxproj -> C:\Facultate\Semestrul 2\POO\Treasure Hunt\TreasureHunt\Debug\TreasureHunt.exe
