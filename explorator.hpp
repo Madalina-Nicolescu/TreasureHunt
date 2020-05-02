@@ -21,7 +21,7 @@ protected:
 public:
 
     Explorator();
-    Explorator(Harta&);
+    Explorator(Harta&, int,int,bool,bool,string);
     virtual ~Explorator();
 
     int get_xHarta() const;
@@ -30,11 +30,8 @@ public:
     bool get_isAlive() const;
     bool get_comoara() const;
 
-    void set_comoara(const bool);
-
     virtual void choose_new_position(Harta&) = 0;
 
-    friend ostream& operator << (ostream&, Explorator&);
 
 
 };

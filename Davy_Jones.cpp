@@ -1,13 +1,7 @@
 #include "Davy_Jones.hpp"
 
-Davy_Jones::Davy_Jones(Harta& h)
-{
-	this->xHarta = h.get_rows() - 1;
-	this->yHarta = h.get_cols() - 1;
-	this->comoara = false;
-	this->nume_explorator = "Davy Jones";
-	h.setValoare(xHarta, yHarta, 'D');
-}
+Davy_Jones::Davy_Jones(Harta& h): Explorator(h, h.get_rows()-1, h.get_cols()-1,false, true,"Davy Jones")
+{}
 
 void Davy_Jones::choose_new_position(Harta& h)
 {
@@ -23,6 +17,7 @@ void Davy_Jones::choose_new_position(Harta& h)
 
 	if (isAlive)
 	{
+		//verific prima data daca are o comoara in jurul sau
 		if ((x != 0 && h.getValoare(x - 1, y) == 'X') ||
 			(y != (h.get_cols() - 1) && h.getValoare(x, y + 1) == 'X') ||
 			(x != (h.get_rows() - 1) && h.getValoare(x + 1, y) == 'X') ||
@@ -30,6 +25,8 @@ void Davy_Jones::choose_new_position(Harta& h)
 		{
 			h.setValoare(x, y, 'D');
 			h.creste_explorate();
+
+			//caut casuta pe care se afla comoara si schimb coordonatele si setez comoara ca fiind gasita
 			if (x != 0 && h.getValoare(x - 1, y) == 'X')
 			{
 				h.setValoare(x - 1, y, 'D');
@@ -61,11 +58,12 @@ void Davy_Jones::choose_new_position(Harta& h)
 			}
 			cout << "\n\tDavy Jones a gasit una dintre chei pe pozitia (" << xHarta << ", " << yHarta << ") \n"
 				<< "\t\tDo you fear death? I can offer you...an escape.\n";
-			isAlive = false;
+			isAlive = false; //jucatorul iese din joc
 			h.scade_comori();
 			h.scade_exploratori();
 		}
 		else {
+			//prima data verifica daca Tia Dalma a trecut pe acolo, la distanta de doua casute
 			if (x > 1 && h.getValoare(x - 2, y) == 'T' && h.getValoare(x - 1, y) == '~')
 			{
 				h.setValoare(x, y, 'D');
@@ -90,6 +88,7 @@ void Davy_Jones::choose_new_position(Harta& h)
 				xHarta = x;
 				yHarta = y - 1;
 			}
+			//daca nu a gasit niciun T pe harta, isi continua miscarea in mod normal
 			else if (x != 0 && h.getValoare(x - 1, y) == '~')
 			{
 				h.setValoare(x, y, 'D');
@@ -127,6 +126,7 @@ void Davy_Jones::choose_new_position(Harta& h)
 				yHarta = y - 1;
 			}
 			else {
+				//daca nu gaseste casute libere, ramane blocat
 				cout << "\n\tDavy Jones a naufragiat :( \n";
 				isAlive = false;
 				h.scade_exploratori();
@@ -135,7 +135,6 @@ void Davy_Jones::choose_new_position(Harta& h)
 			{
 				cout << "\n\tDavy Jones s-a mutat in pozitia (" << xHarta << ", " << yHarta << ")\n";
 				h.setValoare(xHarta, yHarta, 'D');
-
 			}
 		}
 		

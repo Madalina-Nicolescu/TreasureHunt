@@ -1,13 +1,7 @@
 #include "Tia_Dalma.hpp"
 
-Tia_Dalma::Tia_Dalma(Harta& h)
-{
-	this->xHarta = 0;
-	this->yHarta = h.get_cols() - 1;
-	this->comoara = false;
-	this->nume_explorator = "Tia Dalma";
-	h.setValoare(xHarta, yHarta, 'T');
-}
+Tia_Dalma::Tia_Dalma(Harta& h):Explorator(h, 0,h.get_cols() - 1, false, true, "Tia Dalma")
+{}
 
 void Tia_Dalma::choose_new_position(Harta& h)
 {
@@ -16,11 +10,10 @@ void Tia_Dalma::choose_new_position(Harta& h)
 
 	int x = get_xHarta();
 	int y = get_yHarta();
-	int r = h.get_rows();
-	int c = h.get_cols();
 
 	if (isAlive == true)
 	{
+		//verific prima data daca are o comoara in jurul sau
 		if ((x != 0 && y != 0 && h.getValoare(x - 1, y - 1) == 'X') ||
 			(x != 0 && y != (h.get_cols() - 1) && h.getValoare(x - 1, y + 1) == 'X') ||
 			(x != (h.get_rows()-1) && y != 0 && h.getValoare(x + 1, y - 1) == 'X') ||
@@ -30,6 +23,7 @@ void Tia_Dalma::choose_new_position(Harta& h)
 			h.setValoare(x, y, 'T');
 			h.creste_explorate();
 
+			//caut casuta pe care se afla comoara si schimb coordonatele si setez comoara ca fiind gasita
 			if (x != 0 && y != 0 && h.getValoare(x - 1, y - 1) == 'X')
 			{
 				h.setValoare(x - 1, y - 1, 'T');
@@ -62,7 +56,7 @@ void Tia_Dalma::choose_new_position(Harta& h)
 			}
 			cout << "\n\tTia Dalma a gasit una dintre chei pe pozitia (" << xHarta << ", " << yHarta << ") \n"
 				<< "\t\tA touch... of destiny.\n";
-			isAlive = false;
+			isAlive = false; //jucatorul paraseste jocul
 			h.scade_comori();
 			h.scade_exploratori();
 		}
@@ -108,6 +102,7 @@ void Tia_Dalma::choose_new_position(Harta& h)
 				cout << "\n\tTia Dalma a naufragiat :( \n";
 				isAlive = false;
 				h.scade_exploratori();
+				//jucatorul a ramas blocat
 			}
 			if (isAlive)
 			{

@@ -7,7 +7,7 @@ Harta::Harta(int r, int c)
     this->rows = r;
     this->explorate = 4;
     this->comori = 3;
-    this->nr_exploratori = 4; // sa nu uit s o schimb
+    this->nr_exploratori = 4; 
     this->M = new char* [this->rows];
     for (int i = 0; i < this->rows; i++)
     {
@@ -17,6 +17,10 @@ Harta::Harta(int r, int c)
             this->M[i][j] = '~';
         }
     }
+    this->M[0][0] = 'J';
+    this->M[0][cols - 1] = 'T';
+    this->M[rows - 1][0] = 'B';
+    this->M[rows - 1][cols - 1] = 'D';
 
 }
 
@@ -31,6 +35,9 @@ Harta::~Harta()
     this->rows = 0;
     this->explorate = 0;
 }
+
+
+//-----GETTERS-----
 
 int Harta::get_explorate() const {
     return this->explorate;
@@ -58,6 +65,9 @@ char Harta::getValoare(int i, int j) const
     return this->M[i][j];
 }
 
+
+//-----SETTERS-----
+
 void Harta::setValoare(int i, int j, char ch)
 {
     this->M[i][j] = ch;
@@ -79,7 +89,10 @@ void Harta::scade_exploratori()
     this->nr_exploratori--;
 }
 
-void Harta::aseaza_comori()
+
+//-----MODIFICARE HARTA-----
+
+void Harta::aseaza_comori() //se aseaza cele 3 chei random pe harta, dar nu in cele 4 colturi
 {
     srand(time(0));
     int x, y;
@@ -93,6 +106,9 @@ void Harta::aseaza_comori()
         M[x][y] = 'X';
     }
 }
+
+
+//-----AFISARE HARTA-----
 
 ostream& operator <<(ostream& g, Harta& h)
 {

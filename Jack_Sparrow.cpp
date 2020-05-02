@@ -1,13 +1,7 @@
 #include "Jack_Sparrow.hpp"
 
-Jack_Sparrow::Jack_Sparrow(Harta& h)
-{
-	this->xHarta = 0;
-	this->yHarta = 0;
-	this->comoara = false;
-	this->nume_explorator = "Jack Sparrow";
-	h.setValoare(0, 0, 'J');
-}
+Jack_Sparrow::Jack_Sparrow(Harta& h):Explorator(h, 0, 0, false, true, "Jack Sparrow")
+{}
 
 void Jack_Sparrow::choose_new_position(Harta& h)
 {
@@ -29,6 +23,7 @@ void Jack_Sparrow::choose_new_position(Harta& h)
 
 	if (isAlive == true)
 	{
+		//verific prima data daca are o comoara in jurul sau
 		if ((x != 0 && h.getValoare(x - 1, y) == 'X') ||
 			(y != (h.get_cols() - 1) && h.getValoare(x, y + 1) == 'X') ||
 			(x != (h.get_rows() - 1) && h.getValoare(x + 1, y) == 'X') ||
@@ -38,6 +33,7 @@ void Jack_Sparrow::choose_new_position(Harta& h)
 			h.setValoare(x, y, 'J');
 			h.creste_explorate();
 
+			//caut casuta pe care se afla comoara si schimb coordonatele si setez comoara ca fiind gasita
 			if (x != 0 && h.getValoare(x - 1, y) == 'X')
 			{
 				h.setValoare(x - 1, y, 'J');
@@ -68,9 +64,9 @@ void Jack_Sparrow::choose_new_position(Harta& h)
 				yHarta = y - 1;
 			}
 			cout << "\n\tJack Sparrow a gasit una dintre chei pe pozitia (" << xHarta << ", " << yHarta << ") \n"
-				<< "\tGentlemen, m'lady...you will always remember this\n"
+				<< "\t\tGentlemen, m'lady...you will always remember this\n"
 				<< "\t\t\tas the day that you almost caught Captain Jack Sparrow!\n";
-			isAlive = false;
+			isAlive = false; //jucatorul iese din joc
 			h.scade_comori();
 			h.scade_exploratori();
 		}
@@ -116,12 +112,12 @@ void Jack_Sparrow::choose_new_position(Harta& h)
 				cout << "\n\tJack Sparrow a naufragiat :( \n";
 				isAlive = false;
 				h.scade_exploratori();
+				//jucatorul a ramas blocat
 			}
 			if (isAlive)
 			{
 				cout << "\n\tJack Sparrow s-a mutat in pozitia (" << xHarta << ", " << yHarta << ")\n";
 				h.setValoare(xHarta, yHarta, 'J');
-
 			}
 
 		}

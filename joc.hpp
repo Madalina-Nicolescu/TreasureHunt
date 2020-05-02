@@ -25,9 +25,9 @@ public:
 
     int get_zize_explorator() const;
     
-    
     void runda();
     void startJoc();
+    
     void afisHarta();
     void afisClasament();
 

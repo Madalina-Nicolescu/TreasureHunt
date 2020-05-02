@@ -24,6 +24,7 @@ void welcomeScreen()
 int main()
 {
     welcomeScreen();
+
     int r, c;
 
     cout << "\tIntroduceti dimensiunile hartii\n";
