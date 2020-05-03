@@ -60,7 +60,7 @@ int Harta::get_nr_exploratori() const{
 }
 
 
-char Harta::getValoare(int i, int j) const
+char Harta::getValoare(const int i, const int j) const
 {
     return this->M[i][j];
 }
@@ -68,7 +68,7 @@ char Harta::getValoare(int i, int j) const
 
 //-----SETTERS-----
 
-void Harta::setValoare(int i, int j, char ch)
+void Harta::setValoare(const int i, const int j, const char ch)
 {
     this->M[i][j] = ch;
 }

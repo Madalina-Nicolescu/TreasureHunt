@@ -17,13 +17,14 @@ class Joc {
     vector<string> Clasament;
     vector<string> comoara_gasita;
     vector<string> blocati;
+    static int noRound ;
 
 public:
 
     Joc(int, int);
-    ~Joc() {};
+    ~Joc();
 
-    int get_zize_explorator() const;
+    int get_zize_explorator() const; //cati exploratori au mai ramas pe harta
     
     void runda();
     void startJoc();

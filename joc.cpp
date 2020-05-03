@@ -1,5 +1,8 @@
 #include "joc.hpp"
 
+
+int Joc::noRound = 1;
+
 Joc::Joc(int r, int c)
 {
     this->h = new Harta(r, c);
@@ -9,7 +12,13 @@ Joc::Joc(int r, int c)
     this->exploratori.push_back(new Davy_Jones(*h));
     this->exploratori.push_back(new Barba_Neagra(*h));
     h->aseaza_comori();
+    
+}
 
+Joc::~Joc()
+{
+    for (auto i : exploratori)
+        delete i;
 }
 
 
@@ -50,7 +59,43 @@ void Joc::afisClasament()
     cout << "\t|                                |\n";
     cout << "\t ================================\n";
     
+    if (comoara_gasita.size() != 0)
+    {
+        cout << "\n\t";
+        if (comoara_gasita.size() == 1)
+        {
+            cout << *comoara_gasita.begin() << " a gasit una dintre chei.";
+        }
+        else
+        {
+            for (auto i : comoara_gasita)
+            {
+                cout << i << ", ";
+            }
+            cout << "au gasit cheile cufarului.";
 
+        }
+    }
+    cout << "\n";
+    if (blocati.size() != 0)
+    {
+        cout << "\n\t";
+        if (blocati.size() == 1)
+        {
+            cout << *blocati.begin() << " a naufragiat.";
+        }
+        else
+        {
+            for (auto i : blocati)
+            {
+                cout << i << ", ";
+            }
+            cout << "au naufragiat.";
+
+        }
+    }
+
+    cout << "\n";
 }
 
 //-----GETTER-----
@@ -64,7 +109,9 @@ int Joc::get_zize_explorator() const
 
 void Joc::runda()
 {
-   
+    cout << "\n\t\t\tRunda " << noRound;
+    cout << "\n";
+    noRound++;
     for (int i = 0; i < exploratori.size(); i++) // pentru fiecare dintre cei 4 exploratori
                                                  // se alege noua pozitie
     {
@@ -118,12 +165,16 @@ void Joc::startJoc()
     cout << "\n\t Optiunea ta : ";
     cin >> ch;
     cout << "\n";
+
+
     try
     {
         if (ch != '1' && ch != '2' )
             throw "Optiune invalida"; //daca utilizatorul a ales o optiune invalida, se arunca o exceptie
 
-        while ((ch == '1' || ch == 'y' || ch == 'Y') && get_zize_explorator() != 0 && h->get_explorate() != (h->get_cols()*h->get_rows()) ) 
+        
+
+        while ((ch == '1' || ch == 'd' || ch == 'D') && get_zize_explorator() != 0 && h->get_explorate() != (h->get_cols()*h->get_rows()) ) 
         {
             //daca optiunea utilizatorului este 1, sau daca vrea sa continue jocul,
             //daca mai sunt exploratori pe harta sau casute neexplorate,
@@ -131,10 +182,12 @@ void Joc::startJoc()
 
             runda();
 
-            cout << "\n\tDoriti sa continuati? (y - yes, n - no, 2 - Vreau sa vad direct finalul)\n\t";
+            cout << "\n\tDoriti sa continuati? (d - da, n - nu, 2 - Vreau sa vad direct finalul)\n\t";
             cin >> ch;
             cout << "\n";
-
+            
+            if (ch == 'n')
+                cout << "\n\tJocul s-a terminat\n";
             //utilizatorul poate oricand sa schimbe modul jocului si sa aleaga sa
             //desfasoare integral jocul
         }
@@ -144,6 +197,7 @@ void Joc::startJoc()
             //daca utilizatorul a ales optiunea 2, jocul se va desfasura integral
 
             runda();
+           
         }
 
         if (get_zize_explorator() == 0)

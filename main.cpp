@@ -28,9 +28,9 @@ int main()
     int r, c;
 
     cout << "\tIntroduceti dimensiunile hartii\n";
-    cout << "\tNumarul de linii = ";
+    cout << "\tNumarul de linii (minim 15) = ";
     cin >> r;
-    cout << "\tNumarul de coloane = ";
+    cout << "\tNumarul de coloane (minim 15) = ";
     cin >> c;
 
     try

@@ -26,10 +26,10 @@ public:
     int get_cols() const;
     int get_comori() const;
     int get_nr_exploratori() const;
-    char getValoare(int, int) const;
+    char getValoare(const int,const int) const;
 
 
-    void setValoare(int, int, char);
+    void setValoare(const int, const int, const char);
 
 
     void creste_explorate();
@@ -38,7 +38,6 @@ public:
 
     void aseaza_comori();
 
-    void remove_explorator(const Explorator*);
 
     friend ostream& operator << (ostream&, Harta&);
 

@@ -1,12 +1,6 @@
 #include "explorator.hpp"
 
-Explorator::Explorator() {
-    this->xHarta = -1;
-    this->yHarta = -1;
-    this->comoara = false;
-    this->nume_explorator = "";
-    this->isAlive = true;
-}
+Explorator::Explorator():xHarta(-1),yHarta(-1),comoara(false),isAlive(true),nume_explorator("") {}
 
 Explorator::Explorator(Harta& h, int x, int y, bool c, bool a, string n): xHarta(x), yHarta(y), comoara(c), isAlive(a), nume_explorator(n)
 {}
