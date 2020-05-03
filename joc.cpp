@@ -100,7 +100,7 @@ void Joc::afisClasament()
 
 //-----GETTER-----
 
-int Joc::get_zize_explorator() const
+int Joc::get_size_explorator() const
 {
     return this->exploratori.size();
 }
@@ -174,7 +174,7 @@ void Joc::startJoc()
 
         
 
-        while ((ch == '1' || ch == 'd' || ch == 'D') && get_zize_explorator() != 0 && h->get_explorate() != (h->get_cols()*h->get_rows()) ) 
+        while ((ch == '1' || ch == 'd' || ch == 'D') && get_size_explorator() != 0 && h->get_explorate() != (h->get_cols()*h->get_rows()) ) 
         {
             //daca optiunea utilizatorului este 1, sau daca vrea sa continue jocul,
             //daca mai sunt exploratori pe harta sau casute neexplorate,
@@ -192,7 +192,7 @@ void Joc::startJoc()
             //desfasoare integral jocul
         }
 
-        while (ch == '2' && get_zize_explorator() != 0 && h->get_explorate() != (h->get_cols() * h->get_rows()))
+        while (ch == '2' && get_size_explorator() != 0 && h->get_explorate() != (h->get_cols() * h->get_rows()))
         {
             //daca utilizatorul a ales optiunea 2, jocul se va desfasura integral
 
@@ -200,7 +200,7 @@ void Joc::startJoc()
            
         }
 
-        if (get_zize_explorator() == 0)
+        if (get_size_explorator() == 0)
         {
             //daca jocul s-a terminat, se afiseaza clasamentul
 

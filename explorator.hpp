@@ -24,15 +24,13 @@ public:
     Explorator(Harta&, int,int,bool,bool,string);
     virtual ~Explorator();
 
-    int get_xHarta() const;
-    int get_yHarta() const;
-    string get_nume() const;
-    bool get_isAlive() const;
-    bool get_comoara() const;
+    int get_xHarta() const; //returneaza coordonata x 
+    int get_yHarta() const; // retruneaza coordonata y
+    string get_nume() const; // returneaza numele jucatorului
+    bool get_isAlive() const; //true daca jucatorul este inca pe harta, false altfel
+    bool get_comoara() const; //true daca jucatorul a gasit comoara, false altfel
 
-    virtual void choose_new_position(Harta&) = 0;
-
-
+    virtual void choose_new_position(Harta&) = 0; //functie virtuala pura care alege noua pozitie pe harta
 
 };
 

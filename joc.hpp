@@ -24,13 +24,13 @@ public:
     Joc(int, int);
     ~Joc();
 
-    int get_zize_explorator() const; //cati exploratori au mai ramas pe harta
+    int get_size_explorator() const; //returneaza numarul de exploratori care au mai ramas pe harta
     
-    void runda();
-    void startJoc();
+    void runda(); // initiaza o runda
+    void startJoc(); // desfasurarea jocului
     
-    void afisHarta();
-    void afisClasament();
+    void afisHarta(); // afiseaza harta la momentul actual 
+    void afisClasament(); //afiseaza clasamentul la finalul jocului
 
 };
 

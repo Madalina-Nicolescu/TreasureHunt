@@ -8,6 +8,6 @@ public:
 	Barba_Neagra(Harta&);
 	~Barba_Neagra();
 
-	void choose_new_position(Harta&);
+	void choose_new_position(Harta&); //alege noua pozitie pe harta
 };
 

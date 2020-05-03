@@ -1,4 +1,11 @@
-﻿  joc.cpp
+﻿  Barba_Neagra.cpp
+  Davy_Jones.cpp
+  Jack_Sparrow.cpp
+  Tia_Dalma.cpp
+  explorator.cpp
+  harta.cpp
+C:\Facultate\Semestrul 2\POO\Treasure Hunt\TreasureHunt\TreasureHunt\harta.cpp(96,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  joc.cpp
 C:\Facultate\Semestrul 2\POO\Treasure Hunt\TreasureHunt\TreasureHunt\joc.cpp(115,23): warning C4018: '<': signed/unsigned mismatch
   main.cpp
   Generating Code...

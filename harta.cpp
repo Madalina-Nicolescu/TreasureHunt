@@ -1,13 +1,16 @@
 #include "harta.hpp"
 #include <time.h>
 
+
+int Harta::comori = 3;
+int Harta::explorate = 4;
+int Harta::nr_exploratori = 4;
+
+
 Harta::Harta(int r, int c)
 {
     this->cols = c;
-    this->rows = r;
-    this->explorate = 4;
-    this->comori = 3;
-    this->nr_exploratori = 4; 
+    this->rows = r; 
     this->M = new char* [this->rows];
     for (int i = 0; i < this->rows; i++)
     {
@@ -53,10 +56,6 @@ int Harta::get_rows() const {
 
 int Harta::get_comori() const {
     return this->comori;
-}
-
-int Harta::get_nr_exploratori() const{
-    return this->nr_exploratori;
 }
 
 

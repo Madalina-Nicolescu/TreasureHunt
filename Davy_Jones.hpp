@@ -7,6 +7,6 @@ public:
 	Davy_Jones(Harta& h);
 	~Davy_Jones() {};
 
-	void choose_new_position(Harta&);
+	void choose_new_position(Harta&); //alege noua pozitie pe harta
 };
 

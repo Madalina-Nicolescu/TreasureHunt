@@ -6,7 +6,7 @@ Davy_Jones::Davy_Jones(Harta& h): Explorator(h, h.get_rows()-1, h.get_cols()-1,f
 void Davy_Jones::choose_new_position(Harta& h)
 {
 	//Davy Jones, indragostit de Tia Dalma, incearca sa ajunga la ea.
-	//Verifica 2 casute in sus, la dreapta, in jos, la stanga.
+	//Verifica 2 casute in jos, la stanga, in sus, la dreapta.
 	//Daca gaseste o casuta marcata cu T, se duce spre ea.
 	//Daca nu mai are miscari valide, poate cobori o casuta pe diagonala (stanga jos, dreapta jos).
 	//Dar, deoarece este mai important sa puna mana pe cheia cufarului, daca are in jurul sau o comoara,
@@ -64,19 +64,7 @@ void Davy_Jones::choose_new_position(Harta& h)
 		}
 		else {
 			//prima data verifica daca Tia Dalma a trecut pe acolo, la distanta de doua casute
-			if (x > 1 && h.getValoare(x - 2, y) == 'T' && h.getValoare(x - 1, y) == '~')
-			{
-				h.setValoare(x, y, 'D');
-				xHarta = x - 1;
-				yHarta = y;
-			}
-			else if (y < h.get_cols()-2 && h.getValoare(x, y + 2) == 'T' && h.getValoare(x, y + 1) == '~')
-			{
-				h.setValoare(x, y, 'D');
-				xHarta = x;
-				yHarta = y + 1;
-			}
-			else if (x < h.get_rows()-2 && h.getValoare(x + 2, y) == 'T' && h.getValoare(x + 1, y) == '~')
+			if (x < h.get_rows() - 2 && h.getValoare(x + 2, y) == 'T' && h.getValoare(x + 1, y) == '~')
 			{
 				h.setValoare(x, y, 'D');
 				xHarta = x + 1;
@@ -88,19 +76,19 @@ void Davy_Jones::choose_new_position(Harta& h)
 				xHarta = x;
 				yHarta = y - 1;
 			}
-			//daca nu a gasit niciun T pe harta, isi continua miscarea in mod normal
-			else if (x != 0 && h.getValoare(x - 1, y) == '~')
+			else if (x > 1 && h.getValoare(x - 2, y) == 'T' && h.getValoare(x - 1, y) == '~')
 			{
 				h.setValoare(x, y, 'D');
 				xHarta = x - 1;
 				yHarta = y;
 			}
-			else if (y != (h.get_cols() - 1) && h.getValoare(x, y + 1) == '~')
+			else if (y < h.get_cols() - 2 && h.getValoare(x, y + 2) == 'T' && h.getValoare(x, y + 1) == '~')
 			{
 				h.setValoare(x, y, 'D');
 				xHarta = x;
 				yHarta = y + 1;
 			}
+			//daca nu a gasit niciun T pe harta, isi continua miscarea in mod normal
 			else if (x != (h.get_rows() - 1) && h.getValoare(x + 1, y) == '~')
 			{
 				h.setValoare(x, y, 'D');
@@ -112,6 +100,18 @@ void Davy_Jones::choose_new_position(Harta& h)
 				h.setValoare(x, y, 'D');
 				xHarta = x;
 				yHarta = y - 1;
+			}
+			else if (x != 0 && h.getValoare(x - 1, y) == '~')
+			{
+				h.setValoare(x, y, 'D');
+				xHarta = x - 1;
+				yHarta = y;
+			}
+			else if (y != (h.get_cols() - 1) && h.getValoare(x, y + 1) == '~')
+			{
+				h.setValoare(x, y, 'D');
+				xHarta = x;
+				yHarta = y + 1;
 			}
 			else if (x != (h.get_rows() - 1) && y != (h.get_cols() - 1) && h.getValoare(x + 1, y + 1) == '~')
 			{
